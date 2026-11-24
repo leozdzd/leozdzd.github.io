@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leonardo Gambassi</title>
+<meta name="description" content="Leonardo Gambassi — Music strategy, backed by data. Milan.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://leozdzd.github.io/">
+<meta property="og:title" content="Leonardo Gambassi">
+<meta property="og:description" content="Music strategy, backed by data. Milan.">
+<meta property="og:image" content="https://leozdzd.github.io/assets/share.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#cdbdf2">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23d7261e'/%3E%3Ctext x='16' y='22' font-family='Arial' font-weight='700' font-size='15' fill='white' text-anchor='middle'%3ELG%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #cdbdf2;
+    --bg2: #bba7ec;
+    --red: #d7261e;
+    --blue: #2f6fe4;
+    --ink: #17131f;
+    --card: #fbf9ff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; overflow-x: clip; background: var(--bg2); }
+  body {
+    background: linear-gradient(180deg, var(--bg) 0%, var(--bg2) 100%); color: var(--ink);
+    font: 400 15px/1.5 "Space Grotesk", system-ui, sans-serif; min-height: 100svh;
+    -webkit-tap-highlight-color: transparent;
+  }
+  main { max-width: 440px; margin: 0 auto; padding: 0 16px calc(96px + env(safe-area-inset-bottom)); }
+
+  :root { --w: min(360px, calc(100vw - 32px)); }
+  /* Height is set from the card's real size in JS; this is the fallback. */
+  .hang { position: relative; height: calc(90px + var(--w) * 1.6); display: flex; justify-content: center; }
+  .rig { position: absolute; top: 0; left: 50%; transform-origin: 0 0; will-change: transform; }
+  .strap {
+    position: absolute; left: -14px; top: -40px; width: 28px; height: 110px; background: var(--blue);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    box-shadow: inset -4px 0 0 rgba(0,0,0,.12);
+  }
+  .strap span {
+    writing-mode: vertical-rl; font: 700 11px "Space Grotesk", sans-serif; color: #fff; letter-spacing: .2em;
+    text-transform: uppercase; white-space: nowrap;
+  }
+  .clip { position: absolute; left: -16px; top: 62px; width: 32px; height: 34px; border-radius: 6px 6px 10px 10px;
+    background: linear-gradient(#d9d9df, #9a9aa4); box-shadow: 0 2px 4px rgba(0,0,0,.25); }
+  .clip::after { content: ""; position: absolute; left: 10px; top: 22px; width: 12px; height: 12px; border-radius: 50%; border: 3px solid #8a8a94; background: transparent; }
+  .card {
+    position: absolute; left: calc(var(--w) / -2); top: 90px; width: var(--w);
+    background: var(--card); border-radius: 16px; overflow: hidden;
+    box-shadow: 0 1px 0 rgba(255,255,255,.8) inset, 0 30px 50px -20px rgba(23,19,31,.45), 0 4px 12px rgba(23,19,31,.15);
+  }
+  .card::before { content: ""; position: absolute; left: 50%; top: 10px; width: 46px; height: 8px; margin-left: -23px; border-radius: 4px; background: var(--bg2); z-index: 2; }
+  .band { background: var(--red); color: #fff; padding: 28px 18px 12px; display: flex; justify-content: space-between; align-items: end; }
+  .band b { font-size: 26px; letter-spacing: -.03em; line-height: 1; }
+  .band span { font: 500 10px "JetBrains Mono", monospace; letter-spacing: .12em; text-transform: uppercase; opacity: .85; }
+  .photo { margin: 14px 14px 0; border-radius: 10px; overflow: hidden; aspect-ratio: 4 / 5; background: var(--bg2); }
+  .photo img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; display: block; pointer-events: none; -webkit-user-drag: none; }
+  .body { padding: 14px 18px 12px; }
+  .body h1 { font-size: 30px; font-weight: 700; line-height: 1; letter-spacing: -.03em; }
+  .body p { font-size: 15px; line-height: 1.3; margin-top: 6px; color: #4a4356; }
+  .meta { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px dashed #d8d0ea; margin: 0 18px; padding: 10px 0; font: 400 10px "JetBrains Mono", monospace; text-transform: uppercase; letter-spacing: .08em; color: #6d6580; }
+  .meta b { display: block; color: var(--ink); font-weight: 500; font-size: 11px; }
+  .barcode { height: 34px; margin: 0 18px 16px; background: repeating-linear-gradient(90deg, var(--ink) 0 2px, transparent 2px 4px, var(--ink) 4px 5px, transparent 5px 8px, var(--ink) 8px 11px, transparent 11px 12px); opacity: .9; }
+  .hint { position: absolute; bottom: 14px; transition: opacity .3s; left: 0; right: 0; text-align: center; font: 400 11px "JetBrains Mono", monospace; letter-spacing: .08em; color: rgba(23,19,31,.55); text-transform: uppercase; }
+
+  .links { display: grid; gap: 8px; }
+  .link {
+    display: flex; justify-content: space-between; align-items: center; width: 100%; gap: 12px;
+    padding: 15px 18px; border-radius: 12px; background: rgba(251,249,255,.6); border: 1px solid rgba(23,19,31,.08);
+    color: inherit; text-decoration: none; font: 500 16px "Space Grotesk", sans-serif; cursor: pointer; text-align: left;
+    transition: background .2s, transform .2s;
+  }
+  .link small { font: 400 11px "JetBrains Mono", monospace; color: #6d6580; letter-spacing: .04em; }
+  .link:hover, .link:focus-visible { background: var(--card); transform: translateY(-1px); outline: none; }
+  .link.primary { background: var(--ink); color: var(--card); }
+  .link.primary small { color: var(--bg); }
+  .link.primary:hover { background: var(--red); }
+  .link.primary:hover small { color: #fff; }
+
+  .drawer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .5s cubic-bezier(.2,.8,.2,1); }
+  .drawer.open { grid-template-rows: 1fr; }
+  .drawer > div { overflow: hidden; }
+  form { display: grid; gap: 8px; padding: 4px 0 8px; }
+  input, textarea {
+    font: 400 16px "Space Grotesk", sans-serif; /* 16px stops iPhone zooming in on focus */ color: var(--ink); background: var(--card);
+    border: 1px solid rgba(23,19,31,.12); border-radius: 10px; padding: 12px 14px; resize: vertical;
+  }
+  input::placeholder, textarea::placeholder { color: #8a829c; }
+  input:focus, textarea:focus { outline: none; border-color: var(--red); }
+  button[type=submit] { justify-self: start; font: 500 14px "Space Grotesk", sans-serif; background: var(--red); color: #fff; border: 0; border-radius: 999px; padding: 11px 20px; cursor: pointer; }
+  button[type=submit]:disabled { opacity: .5; }
+  [data-status] { font-size: 13px; min-height: 1em; }
+  [data-status][data-state=ok] { color: #1f6b35; }
+  [data-status][data-state=error] { color: var(--red); }
+  .hp { position: absolute; left: -9999px; }
+
+  .bar {
+    position: fixed; left: 16px; right: 16px; bottom: calc(14px + env(safe-area-inset-bottom)); z-index: 10;
+    display: flex; justify-content: space-between; align-items: center; max-width: 408px; margin: 0 auto;
+    padding: 16px 20px; border: 0; border-radius: 14px; background: var(--ink); color: var(--card);
+    font: 500 16px "Space Grotesk", sans-serif; cursor: pointer;
+    box-shadow: 0 12px 30px -10px rgba(23,19,31,.5);
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), opacity .35s;
+  }
+  .bar small { font: 400 11px "JetBrains Mono", monospace; color: var(--bg); letter-spacing: .04em; }
+  .bar.hide { transform: translateY(140%); opacity: 0; pointer-events: none; }
+  @media (min-width: 701px) { .bar { display: none; } main { padding-bottom: 48px; } }
+
+  footer { margin-top: 28px; text-align: center; font: 400 11px "JetBrains Mono", monospace; letter-spacing: .08em; text-transform: uppercase; color: rgba(23,19,31,.55); }
+</style>
+</head>
+<body>
+<main>
+  <div class="hang" id="hang">
+    <div class="rig" id="rig">
+      <div class="strap"><span>Music strategy · Music strategy · Music strategy</span></div>
+      <div class="clip"></div>
+      <div class="card">
+        <div class="band"><b>All access</b><span>Milan · 2026</span></div>
+        <div class="photo"><img src="assets/leo.jpg" alt="Leonardo Gambassi speaking on stage"></div>
+        <div class="body">
+          <h1>Leonardo Gambassi</h1>
+          <p>Music strategy, backed by data.</p>
+        </div>
+        <div class="meta"><span>&nbsp;<b>Strategy</b></span><span>Based in<b>Milan, IT</b></span></div>
+        <div class="barcode" aria-hidden="true"></div>
+      </div>
+    </div>
+    <span class="hint" id="hint">Drag the pass</span>
+  </div>
+
+  <nav class="links">
+    <button class="link primary" id="cta" aria-expanded="false" aria-controls="drawer">Get in touch <small>→</small></button>
+    <div class="drawer" id="drawer"><div>
+      <form data-contact>
+        <input class="hp" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off">
+        <input name="name" placeholder="Name" aria-label="Name" required autocomplete="name">
+        <input name="email" type="email" placeholder="Email" aria-label="Email" required autocomplete="email">
+        <textarea name="message" rows="4" placeholder="Message" aria-label="Message" required></textarea>
+        <button type="submit">Send</button>
+        <p data-status role="status"></p>
+      </form>
+    </div></div>
+    <a class="link" href="https://www.linkedin.com/in/leonardogambassi/" target="_blank" rel="noopener">LinkedIn <small>/leonardogambassi ↗</small></a>
+    <a class="link" href="https://x.com/leogambassi" target="_blank" rel="noopener">X <small>@leogambassi ↗</small></a>
+    <a class="link" href="https://www.instagram.com/leonardogambassi/" target="_blank" rel="noopener">Instagram <small>@leonardogambassi ↗</small></a>
+  </nav>
+
+  <footer>© 2026 Leonardo Gambassi</footer>
+</main>
+<button class="bar" id="bar">Get in touch <small>→</small></button>
+<script>
+  const cta = document.getElementById("cta"), dr = document.getElementById("drawer");
+  cta.onclick = () => { const o = dr.classList.toggle("open"); cta.setAttribute("aria-expanded", o); };
+
+  // Pendulum: the pass hangs from the strap and sways gently.
+  // Tuning knobs: MAX = widest swing (radians, 0.14 ≈ 8°), DAMP = how fast it settles (lower = calmer).
+  const MAX = 0.14, DAMP = 0.94, TAP_KICK = 0.012, MOUSE_NUDGE = 0.00008;
+  const rig = document.getElementById("rig"), hang = document.getElementById("hang");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let a = reduce ? 0 : 0.05, v = 0, dragging = false, lastX = null;
+  const card = rig.querySelector(".card");
+  const fit = () => { hang.style.height = card.offsetTop + card.offsetHeight + 56 + "px"; };
+  fit(); addEventListener("resize", fit); card.querySelector("img").addEventListener("load", fit);
+  const pivot = () => { const r = hang.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top }; };
+
+  addEventListener("pointermove", (e) => {
+    if (e.pointerType !== "mouse" || reduce) return; // touch scrolling never moves the pass
+    if (dragging) {
+      const p = pivot();
+      const target = Math.atan2(-(e.clientX - p.x), e.clientY - p.y) * 0.35;
+      v = 0; a += (target - a) * 0.2;
+    } else if (lastX !== null) {
+      v += (e.clientX - lastX) * MOUSE_NUDGE;
+    }
+    lastX = e.clientX;
+  });
+  const hint = document.getElementById("hint");
+  const touch = matchMedia("(hover: none)").matches;
+  if (touch) hint.hidden = true;
+  rig.addEventListener("pointerdown", (e) => {
+    hint.style.opacity = 0;
+    if (reduce) return;
+    // Touch: a tap gives a small sway, so swiping still scrolls. Mouse: grab and drag.
+    if (e.pointerType !== "mouse") { v += (a > 0 ? -1 : 1) * TAP_KICK; return; }
+    dragging = true; rig.setPointerCapture(e.pointerId);
+  });
+  addEventListener("pointerup", () => { dragging = false; });
+  rig.style.cursor = touch ? "pointer" : "grab";
+
+  (function step() {
+    if (!dragging) { v += -Math.sin(a) * 0.006; v *= DAMP; a += v; }
+    a = Math.max(-MAX, Math.min(MAX, a));
+    rig.style.transform = `rotate(${a}rad)`;
+    requestAnimationFrame(step);
+  })();
+
+  // Phones: a "Get in touch" bar stays at the bottom until the real buttons scroll into view.
+  const bar = document.getElementById("bar"), nav = document.querySelector(".links");
+  new IntersectionObserver(([e]) => bar.classList.toggle("hide", e.isIntersecting), { threshold: 0.1 }).observe(nav);
+  bar.onclick = () => {
+    if (!dr.classList.contains("open")) cta.click();
+    nav.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    setTimeout(() => dr.querySelector("input[name=name]").focus({ preventScroll: true }), 500);
+  };
+</script>
+<script src="assets/contact.js"></script>
+</body>
+</html>
